@@ -10,7 +10,7 @@ export default function Settings() {
     <div className="flex flex-row h-full w-full p-6">
       <div className="dropdown">
         <label tabIndex={0} className="btn m-1">
-          Choose Theme
+          Wybierz motyw
         </label>
         <ul
           tabIndex={0}
