@@ -27,7 +27,7 @@ export default function Home() {
       <div>
         <div className="flex flex-col">
           <h1 className="text-2xl font-bold mb-4">
-            Kliknij przycisk i odczytaj plik Excela
+            Kliknij przycisk i odczytaj plik z Excela
           </h1>
 
           <form
