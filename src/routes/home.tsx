@@ -24,6 +24,13 @@ export default function Home() {
           >
             Wczytaj plik
           </button>
+          <button
+            className="px-4 py-2 border-2 rounded-md text-primary"
+            type="reset"
+            onClick={() => setExcelRows([])}
+          >
+            Usuń plik
+          </button>
         </form>
       </div>
 

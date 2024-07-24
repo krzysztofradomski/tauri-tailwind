@@ -21,9 +21,24 @@
         "all": true
       },
       "fs": {
-        "all": true
+        "all": true,
+        "scope": [
+          "**",
+          "$APP",
+          "$APP/**",
+          "$CACHE",
+          "$CACHE/**",
+          "$CONFIG",
+          "$CONFIG/**",
+          "$LOG",
+          "$LOG/**",
+          "$HOME/**"
+        ]
       },
       "path": {
+        "all": true
+      },
+      "os": {
         "all": true
       }
     },
