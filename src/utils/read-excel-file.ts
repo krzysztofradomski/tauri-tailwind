@@ -1,29 +1,7 @@
-import { read } from "xlsx";
-import { open } from "@tauri-apps/api/dialog";
-import { readBinaryFile } from "@tauri-apps/api/fs";
 import { utils } from "xlsx";
+import { openFile } from "./open-file";
 
 export type Row = Record<string, string | number>;
-
-const filters = [
-  { name: "Excel Binary Workbook", extensions: ["xlsb"] },
-  { name: "Excel Workbook", extensions: ["xlsx"] },
-  { name: "Excel 97-2004 Workbook", extensions: ["xls"] },
-];
-
-async function openFile() {
-  const selected = (await open({
-    title: "Open Spreadsheet",
-    multiple: false,
-    directory: false,
-    filters,
-  })) as string;
-
-  const d = await readBinaryFile(selected);
-
-  const wb = read(d);
-  return wb;
-}
 
 export async function readFile() {
   let data = { value: [] };

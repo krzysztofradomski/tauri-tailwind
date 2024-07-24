@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { readFile, Row } from "../utils/read-excel-file";
-import { saveFile } from "../utils/save-pdf-file";
+import { saveFile } from "../utils/save-doc-file";
 
 export default function Home() {
   const [excelRows, setExcelRows] = useState<Row[]>([]);
@@ -18,19 +18,18 @@ export default function Home() {
             readFile().then(setExcelRows);
           }}
         >
-          <button
-            className="px-4 py-2 border-2 rounded-md text-primary"
-            type="submit"
-          >
+          <button className="px-4 py-2 border-2 rounded-md" type="submit">
             Wczytaj plik
           </button>
-          <button
-            className="px-4 py-2 border-2 rounded-md text-primary"
-            type="reset"
-            onClick={() => setExcelRows([])}
-          >
-            Usuń plik
-          </button>
+          {excelRows?.length ? (
+            <button
+              className="px-4 py-2 border-2 rounded-md text-danger"
+              type="reset"
+              onClick={() => setExcelRows([])}
+            >
+              Usuń plik
+            </button>
+          ) : null}
         </form>
       </div>
 
