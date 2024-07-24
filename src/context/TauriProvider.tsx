@@ -6,7 +6,6 @@ import tauriConfJson from "../../src-tauri/tauri.conf.json";
 
 declare global {
   interface Window {
-    // @ts-expect-error
     __TAURI__?: any;
   }
 }
