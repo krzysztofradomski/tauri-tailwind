@@ -1,11 +1,10 @@
+import * as docx from "docx";
+import { save } from "@tauri-apps/api/dialog";
+import { writeBinaryFile } from "@tauri-apps/api/fs";
+import { downloadDir } from "@tauri-apps/api/path";
 import { Row } from "./read-excel-file";
 
-import { save } from "@tauri-apps/api/dialog";
-import { writeBinaryFile, writeFile } from "@tauri-apps/api/fs";
-import { downloadDir } from "@tauri-apps/api/path";
-
-import * as docx from "docx";
-const { Document, Packer, Paragraph, TextRun } = docx;
+const { Document, Packer, Paragraph, TextRun, PageBreak } = docx;
 
 export const saveFile = async (rows: Row[]) => {
   const suggestedFilename = "test.doc";
@@ -16,26 +15,25 @@ export const saveFile = async (rows: Row[]) => {
   })) as string;
 
   const doc = new Document({
+    creator: "Jan Kowalski",
+    description: "Import pliku Excel do pliku Word",
+    title: "Moje dane",
     sections: [
       {
         properties: {},
         children: [
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: "\t" + Object.keys(rows[0]).join(", "),
-                bold: true,
-                break: 1,
-              }),
-            ],
-          }),
           ...rows.map((row) => {
             return new Paragraph({
               children: [
                 new TextRun({
+                  text: "\t" + Object.keys(row).join(", "),
+                  break: 1,
+                }),
+                new TextRun({
                   text: "\t" + Object.values(row).join(", "),
                   break: 1,
                 }),
+                new PageBreak(),
               ],
             });
           }),
